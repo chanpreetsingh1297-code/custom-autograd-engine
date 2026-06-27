@@ -97,7 +97,7 @@ To clone and run customized experiments locally via a terminal environment:
 
 ```bash
 # Clone the repository
-git clone [https://github.com/YOUR_USERNAME/custom-autograd-engine.git](https://github.com/YOUR_USERNAME/custom-autograd-engine.git)
+git clone https://github.com/chanpreetsingh1297-code/custom-autograd-engine.git
 cd custom-autograd-engine
 
 # Clear byte-cache directories and run the pipeline with tailored hyperparameter flags
