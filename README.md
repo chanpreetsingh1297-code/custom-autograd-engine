@@ -59,7 +59,7 @@ Epoch  50 | Train Loss: 0.0039 | Train Acc: 100.0%| Test Loss: 0.0945 | Test Acc
 Epoch  99 | Train Loss: 0.0012 | Train Acc: 100.0%| Test Loss: 0.0836 | Test Acc: 96.0%
 ```
 
-> ### Advanced Feature: $\mathcal{O}(1)$ Space Complexity Inference Context
+> ### 🔬 Advanced Feature: $\mathcal{O}(1)$ Space Complexity Inference Context
 > To maximize runtime memory efficiency during validation phases, I implemented a custom scoped context manager (`class no_grad:`). Wrapping testing loops within a `with no_grad():` block dynamically toggles a global tracking flag off:
 > 
 > ```python
