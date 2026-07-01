@@ -103,7 +103,7 @@ cd custom-autograd-engine
 
 # Clear byte-cache directories and run the pipeline with tailored hyperparameter flags
 rm -rf custom_autograd/__pycache__/
-python -m custom_autograd.train --epochs 100 --lr 0.03 --samples 250
+python -m custom_autograd.train --epochs 100 --lr 0.01 --samples 250
 ```
 
 ## 6. License
