@@ -31,7 +31,7 @@ $$\frac{\partial L}{\partial \text{self}} = \sum_{i} \frac{\partial L}{\partial 
 ### The Accumulation Constraint (`+=`)
 This multivariate property mathematically mandates the use of accumulation assignments (`+=`) rather than standard static assignments (`=`) inside the inner `_backward` execution routines:
 
-$$\text{self.grad} \mathrel{+}= \text{out.grad} \times \text{local\_gradient}$$
+$$\text{self.grad} += \text{out.grad} \times \text{local\_gradient}$$
 
 ```python
 # Core Engine Vector Integration (`engine.py`):
