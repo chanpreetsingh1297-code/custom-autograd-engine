@@ -69,6 +69,7 @@ Epoch  99 | Train Loss: 0.0019 | Train Acc: 100.0%| Test Loss: 0.1654 | Test Acc
 > ```
 > By explicitly halting the compilation of parent collections and lambda arrays during inference, this system optimization prevents unnecessary heap allocations and ensures high execution efficiency during non-training evaluation cycles.
 
+![Model Training Evaluation Report Summary](metrics_curve.png)
 ---
 
 ## 4. Repository Structure & Package Layout
