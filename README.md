@@ -49,14 +49,14 @@ To rigorously evaluate the mathematical validity of the engine, a Multi-Layer Pe
 By scaling dataset parameters proportionally alongside the learning rate decay, the engine exhibits clean monotonic loss reduction and stable generalization metrics:
 
 ```text
-🚀 INITIALIZING RUN | Samples: 250 | Epochs: 100 | Initial LR: 0.03
+🚀 INITIALIZING RUN | Samples: 250 | Epochs: 100 | Initial LR: 0.01
 ============================================================
-Epoch   0 | Train Loss: 0.4991 | Train Acc: 81.2% | Test Loss: 0.7640 | Test Acc: 60.0%
-Epoch  10 | Train Loss: 0.0609 | Train Acc: 100.0%| Test Loss: 0.3237 | Test Acc: 90.0%
-Epoch  20 | Train Loss: 0.0227 | Train Acc: 100.0%| Test Loss: 0.2120 | Test Acc: 90.0%
-Epoch  30 | Train Loss: 0.0068 | Train Acc: 100.0%| Test Loss: 0.1039 | Test Acc: 95.0%
-Epoch  50 | Train Loss: 0.0039 | Train Acc: 100.0%| Test Loss: 0.0945 | Test Acc: 95.0%
-Epoch  99 | Train Loss: 0.0012 | Train Acc: 100.0%| Test Loss: 0.0836 | Test Acc: 96.0%
+Epoch   0 | Train Loss: 1.6241 | Train Acc: 46.8% | Test Loss: 1.2381 | Test Acc: 66.0%
+Epoch  10 | Train Loss: 0.0514 | Train Acc: 98.5% | Test Loss: 0.1219 | Test Acc: 94.0%
+Epoch  20 | Train Loss: 0.1412 | Train Acc: 96.0% | Test Loss: 0.1401 | Test Acc: 94.0%
+Epoch  30 | Train Loss: 0.0984 | Train Acc: 100.0%| Test Loss: 0.0812 | Test Acc: 98.0%
+Epoch  50 | Train Loss: 0.0021 | Train Acc: 100.0%| Test Loss: 0.1643 | Test Acc: 98.0%
+Epoch  99 | Train Loss: 0.0019 | Train Acc: 100.0%| Test Loss: 0.1654 | Test Acc: 98.0%
 ```
 
 > ### 🔬 Advanced Feature: $\mathcal{O}(1)$ Space Complexity Inference Context
