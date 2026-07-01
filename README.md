@@ -79,7 +79,14 @@ custom-autograd-engine/
 ├── .gitignore                      # Suppresses tracking of compiled cache assets
 ├── LICENSE                         # MIT open-source license standard
 ├── README.md                       # High-fidelity architectural documentation
+├── metrics_curve.png               # High-DPI side-by-side performance dashboard
 ├── autograd_exploration_demo.ipynb # Interactive Google Colab verification notebook
+├── derivations/                    # 🧠 Mathematical verification directory
+│   ├── README.md                   # Core math mappings and scientific guide
+│   ├── CHAIN_RULE_AND_ADDITION.md  # Detailed base graph and accumulation equations
+│   ├── OPERATOR_DERIVATIONS.md     # Dedicated analytical activation and power rule overloads
+│   ├── 01_chain_rule_addition.jpeg # Raw handwritten sheet for base graph calculus
+│   └── 02_tanh_power_derivatives.jpeg# Raw handwritten sheet for operational atomic overloads
 └── custom_autograd/                # Core modular package namespace
     ├── __init__.py                 # Handles package exposures and clean importing
     ├── data.py                     # Hyperplane dataset generation & distribution splits
@@ -87,6 +94,17 @@ custom-autograd-engine/
     ├── nn.py                       # Parametric neuron, layer, and MLP network topologies
     └── train.py                    # Customizable command-line training script entry point
 ```
+
+## 🧠 Analytical Math Audit & Verification
+
+To confirm that the object-oriented tracking tape executes with absolute mathematical precision, all underlying differential mechanics were calculated from first principles before a single line of Python was written. 
+
+The repository preserves my raw handwritten engineering notes alongside dedicated LaTeX analytical breakdowns inside the `[derivations/](./derivations/)` folder:
+
+* **[Base Computational Graph & Pass-Through Mechanics](./derivations/CHAIN_RULE_AND_ADDITION.md):** Breaks down how the **Multivariate Chain Rule** maps onto dynamic topologies, validating why gradient accumulators require summation syntax (`+=`) rather than static assignment to eliminate lateral path leakage. It also showcases the constant unit derivative ($\frac{\partial \text{out}}{\partial \text{self}} = 1.0$) underlying linear addition operators.
+* **[Non-Linear Activation & Power Overloads](./derivations/OPERATOR_DERIVATIONS.md):** Details the exact localized derivative profiles for complex mathematical transformations. This includes tracking the power rule across scalar overloads ($n \cdot x^{n-1}$) and proving the asymptotic limits of the hyperbolic tangent function ($\frac{d}{dx}\tanh(x) = 1 - \tanh^2(x)$) which causes the weight saturation and vanishing gradients analyzed in our Case Studies.
+
+👉 **To inspect the raw hand-drawn calculation sheets and their step-by-step code translations, navigate directly to the [Derivations Directory](./derivations/)**.
 
 ## 5. Execution Guide
 
