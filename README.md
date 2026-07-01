@@ -101,10 +101,10 @@ To confirm that the object-oriented tracking tape executes with absolute mathema
 
 The repository preserves my raw handwritten engineering notes alongside dedicated LaTeX analytical breakdowns inside the `[derivations/](./derivations/)` folder:
 
-* **[Base Computational Graph & Pass-Through Mechanics](./derivations/CHAIN_RULE_AND_ADDITION.md):** Breaks down how the **Multivariate Chain Rule** maps onto dynamic topologies, validating why gradient accumulators require summation syntax (`+=`) rather than static assignment to eliminate lateral path leakage. It also showcases the constant unit derivative ($\frac{\partial \text{out}}{\partial \text{self}} = 1.0$) underlying linear addition operators.
-* **[Non-Linear Activation & Power Overloads](./derivations/OPERATOR_DERIVATIONS.md):** Details the exact localized derivative profiles for complex mathematical transformations. This includes tracking the power rule across scalar overloads ($n \cdot x^{n-1}$) and proving the asymptotic limits of the hyperbolic tangent function ($\frac{d}{dx}\tanh(x) = 1 - \tanh^2(x)$) which causes the weight saturation and vanishing gradients analyzed in our Case Studies.
+* **[Base Computational Graph & Pass-Through Mechanics](./derivatives/README.md):** Breaks down how the **Multivariate Chain Rule** maps onto dynamic topologies, validating why gradient accumulators require summation syntax (`+=`) rather than static assignment to eliminate lateral path leakage. It also showcases the constant unit derivative ($\frac{\partial \text{out}}{\partial \text{self}} = 1.0$) underlying linear addition operators.
+* **[Non-Linear Activation & Power Overloads](./derivatives/README.md):** Details the exact localized derivative profiles for complex mathematical transformations. This includes tracking the power rule across scalar overloads ($n \cdot x^{n-1}$) and proving the asymptotic limits of the hyperbolic tangent function ($\frac{d}{dx}\tanh(x) = 1 - \tanh^2(x)$) which causes the weight saturation and vanishing gradients analyzed in our Case Studies.
 
-👉 **To inspect the raw hand-drawn calculation sheets and their step-by-step code translations, navigate directly to the [Derivations Directory](./derivations/)**.
+👉 **To inspect the raw hand-drawn calculation sheets and their step-by-step code translations, navigate directly to the [Derivations Directory](./derivatives/)**.
 
 ## 5. Execution Guide
 
