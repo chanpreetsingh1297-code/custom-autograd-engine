@@ -1,38 +1,47 @@
-# 🧠 Core Mathematical Foundations & Analytical Derivations
+# 📉 Accumulation Principles & Base Computational Graph Mechanics
 
-This directory preserves the raw, first-principles mathematical derivations executed on paper during the architectural planning of this object-oriented automatic differentiation engine. 
+**Source Material Reference:** `01_chain_rule_addition.jpeg`  
+**Target Engine Implementations:** `custom_autograd/engine.py`
 
-Before translating graph-walking algorithms into Python objects, individual partial differential equations were explicitly mapped out to verify how local gradients propagate through atomic operational nodes using reverse-mode automatic differentiation.
+This document details the first-principles calculus foundations for the core graph-walking engine sketched out during the structural design phase. These equations map how the dynamic operational tape compiles dependencies, resolves variable caching, and updates scalar nodes backward through complex topological pathways.
 
 ---
 
-## 1. Foundational Architecture & The Multivariate Chain Rule
-**Source Material:** `01_chain_rule_addition.jpeg`
+## 1. The Global Tracking Node Topology
 
-The framework evaluates the global optimization objective gradient by mapping the **Multivariate Chain Rule** onto the dynamically constructed Directed Acyclic Graph (DAG). 
+To execute algorithmic backpropagation without deep-learning frameworks, individual mathematical operations are treated as discrete coordinate nodes within a dynamically compiled **Directed Acyclic Graph (DAG)**.
 
-For a scalar root optimization objective $L$ and an arbitrary scalar node $\text{self}$ contributing to an execution path leading to a downstream dependent node $\text{out}$, the fundamental backward propagation equation resolves as:
+Every computational operation creates an explicit child-to-parent reference pair. When evaluating an upstream expression, the engine preserves the incoming mathematical variables within an internal structural collection (`_children`) and links them to the generative operational identifier (`_op`).
+
+---
+
+## 2. Dynamic Backpropagation via the Multivariate Chain Rule
+
+The foundational objective of the autograd engine is compiling the total partial derivative of an arbitrary root optimization scalar (Global Loss, $L$) with respect to every single underlying weight, bias, and input coordinate.
+
+### Mathematical Derivation
+Let an active operational variable $\text{self}$ feed into an immediate downstream variable $\text{out}$ during the forward execution pass. By the single-variable Chain Rule definition, the partial derivative updates as:
 
 $$\frac{\partial L}{\partial \text{self}} = \frac{\partial L}{\partial \text{out}} \times \frac{\partial \text{out}}{\partial \text{self}}$$
 
-In the custom codebase, this rule is translated directly into cumulative gradient updates within each node's internal `_backward` execution tape:
+However, in multi-layer topologies, an independent variable can branch out and contribute to multiple parallel downstream execution expressions ($y_1, y_2, \dots, y_i$). To prevent gradient leakage and account for all concurrent pathways, the engine implements the full **Multivariate Chain Rule**:
+
+$$\frac{\partial L}{\partial \text{self}} = \sum_{i} \frac{\partial L}{\partial y_i} \cdot \frac{\partial y_i}{\partial \text{self}}$$
+
+### The Accumulation Constraint (`+=`)
+This multivariate property mathematically mandates the use of accumulation assignments (`+=`) rather than standard static assignments (`=`) inside the inner `_backward` execution routines:
 
 $$\text{self.grad} \mathrel{+}= \text{out.grad} \times \text{local\_gradient}$$
 
-### Case Study: Linear Accumulation via Addition Overloads
-When an addition node is compiled ($out = \text{self} + \text{other}$), the localized partial derivative with respect to each independent variable isolates perfectly to a constant unit value:
-
-$$\frac{\partial \text{out}}{\partial \text{self}} = \frac{\partial}{\partial \text{self}}(\text{self} + \text{other}) = 1.0$$
-
-$$\frac{\partial \text{out}}{\partial \text{other}} = \frac{\partial}{\partial \text{other}}(\text{self} + \text{other}) = 1.0$$
-
-Thus, the addition layer behaves as a pure **gradient pass-through filter**, distributing the incoming downstream loss signal evenly to ancestral parent variables without scaling alterations:
-
 ```python
-# Code Translation inside engine.py:
-def _backward():
-    self.grad  += out.grad * 1.0
-    other.grad += out.grad * 1.0
+# Core Engine Vector Integration (`engine.py`):
+class Value:
+    def __init__(self, data, _children=(), _op=''):
+        self.data = data
+        self.grad = 0.0          # Initialized to zero accumulation
+        self._backward = lambda: None
+        self._prev = set(_children)
+        self._op = _op
 ```
 
 # 🔬 Analytical Atomic Overloads & Activation Parameter Derivatives
