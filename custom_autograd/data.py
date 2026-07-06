@@ -1,4 +1,6 @@
+
 import random
+import numpy as np
 
 # Generating synthetic Binary Classification data and splits the data into training and testing datasets
 
@@ -18,18 +20,19 @@ def generate_data(num_samples: int=100, num_features: int=3, low: float=-2.0, hi
   if random_seed:
     random.seed(42)
 
-  data = []
-  labels = []
+  X = []
+  y = []
   for sample in range(num_samples):
     row = [random.uniform(low, high) for _ in range(num_features)]
-    data.append(row)
+    X.append(row)
 
     if sum(row) > 0.0:
-      labels.append(1)
+      y.append(1)
     else:
-      labels.append(-1)
+      y.append(-1)
 
-  return data, labels
+  return X, y
+
 
 def split_data(data: list=[], labels: list= [], split_value: float=0.8):
   '''
@@ -50,3 +53,31 @@ def split_data(data: list=[], labels: list= [], split_value: float=0.8):
   test_data, test_labels = data[n:], labels[n:]
 
   return train_data, train_labels, test_data, test_labels
+
+
+def generate_xor_checkerboard(num_samples: int=100, num_features: int=2, low: float=-2.0, high: float=2.0, noise: float=0.1, random_seed: int=None):
+  '''
+    generated xor checkeboard pattern synthetic data for model training
+    Args:
+      num_samples = number of samples(default: 100),
+      num_features = number of features(default: 3),
+      low = float value representing lower bound for data(default: -2.0)
+      high = float value representing higher bound for data(default: 2.0)
+      random_seed = integer value to set the random seed(default: None)
+
+    Example:
+      generate_xor_checkerboard(num_samples=1000, num_features=5, low=-2.0, high=2.0, random_seed=42)
+  '''
+
+  if random_seed:
+    random.seed(42)
+
+  X = []
+  y = []
+  for sample in range(num_samples):
+    X = np.random.uniform(low, high, (num_samples, num_features))
+    y = np.sign(X[:, 0]*X[:, 1])
+
+    X += np.random.normal(0, noise, X.shape)
+
+  return X.tolist(), y.tolist()
