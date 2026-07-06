@@ -223,8 +223,8 @@ def main():
     target_grid.append(Value(0.0))
 
   # 3. initialize the model
-  # model = MLP(NUM_FEATURES, [4, 4, 1])
-  model = MLP(NUM_FEATURES, [2, 1])
+  #model = MLP(NUM_FEATURES, [2, 1])
+  model = MLP(NUM_FEATURES, [4, 4, 1])
 
   # static computation initialization
   grid_logits = [model(x) for x in memory_grid]
