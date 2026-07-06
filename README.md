@@ -62,6 +62,9 @@ While caching a compiled topology eliminates memory allocation overhead and maxi
 
 1. **Topological and Dimensional Rigidity:** Because the memory mapping sequence (`self.topo_order`) is locked at compilation, the entire infrastructure becomes dimensionally frozen. Network layer widths, input channels, and training batch sizes are hardcoded directly into the array layout. Slicing a dynamic variable batch (e.g., evaluating a remaining test slice of 8 samples instead of a compiled batch size of 16) instantly causes index-mapping failures or forces a costly graph re-compilation pass that eliminates any performance gains.
 2. **Control-Flow Blindness:** A compiled static graph is structurally incapable of handling programmatic branching statements natively. If the model requires conditional execution paths during runtime (such as Python `if/else` checks based on token values, or variable-length loops), the execution path must be evaluated dynamically. A static topology cannot adapt its internal nodes on the fly without breaking its pre-cached linear execution array.
+
+#### 💡 The Production Reality: Why Modern Frameworks Dropped Static Graphs
+> **Systems Insight:** Production deep learning frameworks (such as PyTorch) ultimately decoupled from pure static execution models in favor of dynamic "Define-by-Run" (Eager Execution) paradigms because rigid static graphs cannot scale to modern sequence architectures—such as Transformers or autoregressive models—which inherently require variable token lengths, dynamic padding, and native programmatic control-flow without introducing catastrophic compile-time graph latency.
 ---
 
 ## 3. Empirical Performance & Validation Metrics
