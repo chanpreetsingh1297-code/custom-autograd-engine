@@ -67,21 +67,33 @@ While caching a compiled topology eliminates memory allocation overhead and maxi
 > **Systems Insight:** Production deep learning frameworks (such as PyTorch) ultimately decoupled from pure static execution models in favor of dynamic "Define-by-Run" (Eager Execution) paradigms because rigid static graphs cannot scale to modern sequence architectures—such as Transformers or autoregressive models—which inherently require variable token lengths, dynamic padding, and native programmatic control-flow without introducing catastrophic compile-time graph latency.
 ---
 
-## 3. Empirical Performance & Validation Metrics
+## 3. Empirical Performance & Geometric Topology Stress Tests
 
-To rigorously evaluate the mathematical validity of the engine, a Multi-Layer Perceptron architecture (`MLP(3, [4, 4, 1])`) was tasked with discovering a geometric decision boundary separating sample points across a multi-dimensional linear hyperplane. 
+To rigorously evaluate the mathematical validity of the engine and verify the layer capacity of deeper neural configurations, the framework was tasked with capturing highly non-linear geometric decision boundaries across interlocking spiral arms. 
 
-By scaling dataset parameters proportionally alongside the learning rate decay, the engine exhibits clean monotonic loss reduction and stable generalization metrics:
+By applying a global, seeded pseudo-random shuffle to eliminate the polar coordinate phase-shift artifacts detailed in Case Study 4, the deep scalar configuration achieved clean, monotonic loss reduction and matched test-to-train generalization profiles across a heavy graph compilation pass.
+
+### Multi-Topology Telemetry Suite
+
+| Dataset Topology | Network Architecture | Training Metrics | Testing Metrics | Mathematical Decision Boundaries |
+| :--- | :--- | :--- | :--- | :--- |
+| **Concentric Rings** (`make_circles`) | `[2, 8, 1]` | Loss: `2.52` <br> **Acc: 97.5%** | Loss: `3.42` <br> **Acc: 96.9%** | Hidden neurons draw 8 discrete lines; activation blending wraps them into an **optimal octagonal enclosure**. |
+| **Disjointed Grid** (Checkerboard) | `[2, 16, 1]` | Loss: `2.78` <br> **Acc: 95.0%** | Loss: `2.46` <br> **Acc: 96.9%** | Coordinates 16 sharp linear splits to synthesize intersecting bounding zones over disjoint classes. |
+| **Helical Arms** (Twin Spirals) | `[2, 32, 32, 1]` | Loss: `4.75` <br> **Acc: 91.9%** | Loss: `4.34` <br> **Acc: 93.8%** | Deeper multi-layer graph navigates complex topological tunnels to track winding curves smoothly. |
+
+### Heavy Graph Evaluation Logging (`[2, 32, 32, 1]` Spiral Trajectory)
+Processing continuous helical coordinates through a deep scalar configuration requires the dynamic instantiation and topological sorting of thousands of graph nodes per epoch. The engine demonstrated zero optimization drift and clean gradient accumulation across a 500-epoch execution pass:
 
 ```text
-🚀 INITIALIZING RUN | Samples: 250 | Epochs: 100 | Initial LR: 0.01
-============================================================
-Epoch   0 | Train Loss: 1.6241 | Train Acc: 46.8% | Test Loss: 1.2381 | Test Acc: 66.0%
-Epoch  10 | Train Loss: 0.0514 | Train Acc: 98.5% | Test Loss: 0.1219 | Test Acc: 94.0%
-Epoch  20 | Train Loss: 0.1412 | Train Acc: 96.0% | Test Loss: 0.1401 | Test Acc: 94.0%
-Epoch  30 | Train Loss: 0.0984 | Train Acc: 100.0%| Test Loss: 0.0812 | Test Acc: 98.0%
-Epoch  50 | Train Loss: 0.0021 | Train Acc: 100.0%| Test Loss: 0.1643 | Test Acc: 98.0%
-Epoch  99 | Train Loss: 0.0019 | Train Acc: 100.0%| Test Loss: 0.1654 | Test Acc: 98.0%
+🚀 LAUNCHING GEOMETRIC STRESS TEST | Topology: Twin Spirals | Samples: 1000
+Graph Compilation Status: Stable | Throughput: ~3.19 iterations/sec
+================================================================================
+Epoch   0 | Train Loss: 17.8708 | Train Acc: 58.1% | Test Loss: 17.6131 | Test Acc: 46.9%
+Epoch  20 | Train Loss: 10.2969 | Train Acc: 76.2% | Test Loss: 11.3408 | Test Acc: 75.0%
+Epoch  50 | Train Loss:  7.7025 | Train Acc: 86.9% | Test Loss:  6.9838 | Test Acc: 93.8%
+Epoch 100 | Train Loss:  5.9605 | Train Acc: 91.2% | Test Loss:  5.2963 | Test Acc: 93.8%
+Epoch 300 | Train Loss:  4.8591 | Train Acc: 91.9% | Test Loss:  4.4201 | Test Acc: 93.8%
+Epoch 499 | Train Loss:  4.7579 | Train Acc: 91.9% | Test Loss:  4.3490 | Test Acc: 93.8%
 ```
 
 > ### 🔬 Advanced Feature: $\mathcal{O}(1)$ Space Complexity Inference Context
