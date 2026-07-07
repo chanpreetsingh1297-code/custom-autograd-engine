@@ -107,7 +107,36 @@ Epoch 499 | Train Loss:  4.7579 | Train Acc: 93.9% | Test Loss:  4.3490 | Test A
 > ```
 > By explicitly halting the compilation of parent collections and lambda arrays during inference, this system optimization prevents unnecessary heap allocations and ensures high execution efficiency during non-training evaluation cycles.
 
-![Model Training Evaluation Report Summary](metrics_curve.png)
+### 📊 Convergence Profiles & Spatial Loss Dashboards
+
+The matrix below illustrates the side-by-side optimization trajectories (Loss Minimization on the primary left axis vs. Spatial Accuracy on the secondary right axis) across all four geometric runs. Generating square dual-axis subplots allows a direct assessment of how topological complexity structurally impacts gradient settlement patterns across the training lifecycle:
+
+<table width="100%">
+  <tr>
+    <td width="50%" align="center">
+      <strong>Topology 1: Linear Hyperplane Baseline</strong><br/>
+      <img src="assets/metrics_linear.png" width="100%" alt="Linear Hyperplane Convergence"/>
+      <p><em>Asymptotic settlement: Immediate, seamless convergence confirming structural stability of the base gradient optimization layer (100.0% Test Acc).</em></p>
+    </td>
+    <td width="50%" align="center">
+      <strong>Topology 2: Concentric Radial Rings</strong><br/>
+      <img src="assets/metrics_rings.png" width="100%" alt="Concentric Rings Convergence"/>
+      <p><em>Smooth decay: Balanced training bounds as the 8-neuron hidden layer maps weights into a continuous radial bounding space (98.8% Test Acc).</em></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <strong>Topology 3: Disjointed Checkerboard Grid</strong><br/>
+      <img src="assets/metrics_checkerboard.png" width="100%" alt="Checkerboard Grid Convergence"/>
+      <p><em>High-frequency variance: Distinct step-like accuracy corrections as the hidden boundaries discover non-contiguous coordinate pockets (93.8% Test Acc).</em></p>
+    </td>
+    <td width="50%" align="center">
+      <strong>Topology 4: Non-Linear Twin Spirals</strong><br/>
+      <img src="assets/metrics_spiral.png" width="100%" alt="Twin Spirals Convergence"/>
+      <p><em>Peak capacity validation: Highly optimal tracking across deep hidden configurations, showing strong generalization bounds without overfitting (94.8% Test Acc).</em></p>
+    </td>
+  </tr>
+</table>
 ---
 
 ## 4. Repository Structure & Package Layout
