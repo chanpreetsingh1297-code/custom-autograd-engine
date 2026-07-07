@@ -146,20 +146,17 @@ custom-autograd-engine/
 ├── .gitignore                      # Suppresses tracking of compiled cache assets
 ├── LICENSE                         # MIT open-source license standard
 ├── README.md                       # High-fidelity architectural documentation
-├── metrics_curve.png               # High-DPI side-by-side performance dashboard
 ├── autograd_exploration_demo.ipynb # Interactive Google Colab verification notebook
 ├── derivations/                    # 🧠 Mathematical verification directory
 │   ├── README.md                   # Core math mappings and scientific guide
-│   ├── CHAIN_RULE_AND_ADDITION.md  # Detailed base graph and accumulation equations
-│   ├── OPERATOR_DERIVATIONS.md     # Dedicated analytical activation and power rule overloads
 │   ├── 01_chain_rule_addition.jpeg # Raw handwritten sheet for base graph calculus
 │   └── 02_tanh_power_derivatives.jpeg# Raw handwritten sheet for operational atomic overloads
-└── custom_autograd/                # Core modular package namespace
-    ├── __init__.py                 # Handles package exposures and clean importing
-    ├── data.py                     # Hyperplane dataset generation & distribution splits
-    ├── engine.py                   # Primitive scalar Value node mechanics & no_grad context
-    ├── nn.py                       # Parametric neuron, layer, and MLP network topologies
-    └── train.py                    # Customizable command-line training script entry point
+├── custom_autograd/                # Core modular package namespace
+│   ├── __init__.py                 # Handles package exposures and clean importing
+│   ├── data.py                     # Hyperplane dataset generation & distribution splits
+│   ├── engine.py                   # Primitive scalar Value node mechanics & no_grad context
+│   ├── nn.py                       # Parametric neuron, layer, and MLP network topologies
+│   └── train.py                    # Customizable command-line training script entry point
 └── assets/                         # 📊 Media assets and topology convergence plots
     ├── metrics_linear.png          # Linear baseline dual-axis optimization curve
     ├── metrics_circles.jpg         # Concentric radial rings performance plot
