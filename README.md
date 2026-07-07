@@ -160,6 +160,11 @@ custom-autograd-engine/
     ├── engine.py                   # Primitive scalar Value node mechanics & no_grad context
     ├── nn.py                       # Parametric neuron, layer, and MLP network topologies
     └── train.py                    # Customizable command-line training script entry point
+└── assets/                         # 📊 Media assets and topology convergence plots
+    ├── metrics_linear.png          # Linear baseline dual-axis optimization curve
+    ├── metrics_circles.jpg         # Concentric radial rings performance plot
+    ├── metrics_checkerboard.png    # Disjointed checkerboard grid spatial mapping dashboard
+    └── metrics_spiral.jpg          # Non-linear twin spirals peak capacity execution graph
 ```
 
 ## 🧠 Analytical Math Audit & Verification
