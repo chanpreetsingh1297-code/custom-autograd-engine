@@ -120,7 +120,7 @@ The matrix below illustrates the side-by-side optimization trajectories (Loss Mi
     </td>
     <td width="50%" align="center">
       <strong>Topology 2: Concentric Radial Rings</strong><br/>
-      <img src="assets/metrics_rings.png" width="100%" alt="Concentric Rings Convergence"/>
+      <img src="assets/metrics_circles.png" width="100%" alt="Concentric Rings Convergence"/>
       <p><em>Smooth decay: Balanced training bounds as the 8-neuron hidden layer maps weights into a continuous radial bounding space (98.8% Test Acc).</em></p>
     </td>
   </tr>
