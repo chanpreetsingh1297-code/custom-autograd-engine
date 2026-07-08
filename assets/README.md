@@ -1,5 +1,5 @@
-<h2>This folder contains the plotted metric evalutaiton graphs for model built on custom autograd engine for testing.</h2><br>
-<h3>Problem type(Binary Classification):</h3><br>
+<h2>This folder contains the plotted metric evalutaiton graphs for model built on custom autograd engine for testing.</h2>
+<h3>Problem type(Binary Classification):</h3>
 <ul>
   <li>metrics_linear = Model evaluation on Linear dataset.</li>
   <li>metrics_checkerboard = Model evaluation on XOR Checkerboard dataset.</li>
