@@ -158,6 +158,7 @@ custom-autograd-engine/
 │   ├── nn.py                       # Parametric neuron, layer, and MLP network topologies
 │   └── train.py                    # Customizable command-line training script entry point
 └── assets/                         # 📊 Media assets and topology convergence plots
+    ├── README.md                   # Core graphs and plotting guide
     ├── metrics_linear.png          # Linear baseline dual-axis optimization curve
     ├── metrics_circles.jpg         # Concentric radial rings performance plot
     ├── metrics_checkerboard.png    # Disjointed checkerboard grid spatial mapping dashboard
