@@ -55,6 +55,17 @@ During the upfront compilation pass, the engine strips out non-contributing node
 ```python
 self.backward_order = [node for node in self.topo_order if len(node._prev) > 0]
 ```
+#### 3. Visualizing the Compiled Graph Under Load
+To verify these low-level compilation mechanics, the engine's static tape compiler can be rendered visually. The diagnostic visualization below shows a pre-compiled execution tape running a forward/backward pass.
+
+<p align="center">
+  <img src="assets/compiled_graph_visual.png" width="100%" alt="Static Tape Compiled Computational Graph"/>
+</p>
+
+> ### ⚙️ Static Tape Compilation Diagnostics:
+> * **Active Parameter Identification (Blue Slots):** Nodes like `Topo Step: #0` and `Topo Step: #3` are recognized as learnable parameters. The compiler preserves their memory boundaries and allows backward gradients (`grad: -4.0000` and `grad: 1.0000`) to propagate cleanly into their memory slots without dynamic reconstruction.
+> * **Zero-Allocation Execution Sequence (Red Operations):** Operations (like `* [Step 2]` and `+ [Step 6]`) are executed linearly along the pre-sorted sequence. No Python allocation or dynamic graph traversals happen during runtime; variables are mutated in-place within their static pre-allocated memory grid locations.
+> * **Target Input Mapping (Orange Slot):** Standard targets, biases, or constant inputs (`Topo Step: #7`) are isolated within dedicated target buffer slots, keeping execution dependencies highly structured.
 
 ### ⚠️ Architectural Trade-offs & Engineering Limitations (The Cons)
 
