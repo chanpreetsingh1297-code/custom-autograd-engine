@@ -59,7 +59,7 @@ self.backward_order = [node for node in self.topo_order if len(node._prev) > 0]
 To verify these low-level compilation mechanics, the engine's static tape compiler can be rendered visually. The diagnostic visualization below shows a pre-compiled execution tape running a forward/backward pass.
 
 <p align="center">
-  <img src="assets/compiled_graph_visual.png" width="100%" alt="Static Tape Compiled Computational Graph"/>
+  <img src="compiled_graph_visual.png" width="100%" alt="Static Tape Compiled Computational Graph"/>
 </p>
 
 > ### ⚙️ Static Tape Compilation Diagnostics:
