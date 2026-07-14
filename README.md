@@ -157,16 +157,17 @@ custom-autograd-engine/
 ├── .gitignore                      # Suppresses tracking of compiled cache assets
 ├── LICENSE                         # MIT open-source license standard
 ├── README.md                       # High-fidelity architectural documentation
-├── autograd_exploration_demo.ipynb # Interactive Google Colab verification notebook
+├── static_tape_autograd_compiler.ipynb # Interactive Google Colab verification notebook
 ├── derivations/                    # 🧠 Mathematical verification directory
 │   ├── README.md                   # Core math mappings and scientific guide
 │   ├── 01_chain_rule_addition.jpeg # Raw handwritten sheet for base graph calculus
-│   └── 02_tanh_power_derivatives.jpeg# Raw handwritten sheet for operational atomic overloads
+│   └── 02_tanh_power_derivatives.jpeg # Raw handwritten sheet for operational atomic overloads
 ├── custom_autograd/                # Core modular package namespace
 │   ├── __init__.py                 # Handles package exposures and clean importing
 │   ├── data.py                     # Hyperplane dataset generation & distribution splits
 │   ├── engine.py                   # Primitive scalar Value node mechanics & no_grad context
 │   ├── nn.py                       # Parametric neuron, layer, and MLP network topologies
+|   ├── test.py                     # Basic engine testing and verification
 │   └── train.py                    # Customizable command-line training script entry point
 └── assets/                         # 📊 Media assets and topology convergence plots
     ├── README.md                   # Core graphs and plotting guide
