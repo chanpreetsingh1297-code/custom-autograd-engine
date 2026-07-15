@@ -1,4 +1,4 @@
-# Custom Autograd Engine
+# STAC: Static Tape Autograd Compiler
 
 Thanks for checking out my project. I built this lightweight, object-oriented automatic differentiation (Autograd) engine and neural network framework completely from scratch in pure Python. 
 
