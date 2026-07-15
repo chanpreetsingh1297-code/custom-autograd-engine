@@ -4,7 +4,7 @@ Thanks for checking out my project. I built this lightweight, object-oriented au
 
 The core objective of this project was to step away from high-level, abstracted deep learning APIs (like PyTorch or TensorFlow) to investigate and implement the underlying computational mechanics from first principles. This framework models mathematical operations as an explicitly tracked, dynamically constructed **Directed Acyclic Graph (DAG)**, executing reverse-mode automatic differentiation (backpropagation) across arbitrary scalar topologies.
 
-👉 **[Click Here to Open the Interactive Google Colab Verification Notebook](https://colab.research.google.com/drive/1EF9I7Hswslz615sNmYihW_7cNEvDQs_1?usp=sharing)**
+**[Click Here to Open the Interactive Google Colab Verification Notebook](https://colab.research.google.com/drive/1EF9I7Hswslz615sNmYihW_7cNEvDQs_1?usp=sharing)**
 
 ---
 
@@ -25,22 +25,22 @@ To execute backpropagation without risking race conditions, mathematical collisi
 
 Developing an autograd engine from zero uncovers intricate edge cases at the intersection of mathematical theory and Python runtime mechanics. Below is an engineering breakdown of the three major software and numerical bottlenecks encountered and resolved during development:
 
-### 🌟 Case Study 1: Mitigating Gradient Vanishing via $\tanh$ Saturation
+### Case Study 1: Mitigating Gradient Vanishing via $\tanh$ Saturation
 * **The Phenomenon:** During early hyperparameter runs utilizing aggressive initial learning rates, training optimization flatlined prematurely, locking the model into a static ~50% random-guessing accuracy baseline.
 * **The Underlying Science:** High weight initialization coupled with large gradient steps pushed internal neuron activations into extreme input ranges ($|z| > 2.0$). Because the first derivative of the hyperbolic tangent activation function is defined as $\frac{d}{dz}\tanh(z) = 1 - \tanh^2(z)$, entering these asymptotic regions causes the local derivative to decay exponentially toward zero. This essentially paralyzed downstream gradient propagation.
 * **The Student's Fix:** Integrated an exponential learning rate decay schedule ($\eta_{t} = \eta_0 \cdot \gamma^t$, where $\gamma = 0.99$) directly into the training epoch updates. This step dynamically scaled the gradient trajectories down over time, anchoring network parameters safely within the active, high-gradient zones of the activation space.
 
-### 🌟 Case Study 2: Preventing Graph Severance and Memory De-aliasing
+### Case Study 2: Preventing Graph Severance and Memory De-aliasing
 * **The Phenomenon:** Standard parametric updates like `p.data -= lr * p.grad` or dividing cumulative batch loss scores using raw attributes broken the backpropagation chain, triggering an explicit `AttributeError: 'float' object has no attribute '_backward'`.
 * **The Underlying Science:** Accessing the inner primitive `.data` float properties strips away the custom `Value` object wrapper. Computing mathematics directly on this raw primitive float creates an un-tracked value instance, severing the graph's operational tape and stranding ancestral nodes from the backpropagation root.
 * **The Student's Fix:** Restructured all update routines to execute via out-of-place tracking syntax (e.g., `p.data + (-lr * p.grad)`) and normalized total network error explicitly through object-level division (`loss / len(train_data)`), maintaining the unbroken structural integrity of the DAG.
 
-### 🌟 Case Study 3: Overcoming Lazy Generator Garbage Collection Leaks
+### Case Study 3: Overcoming Lazy Generator Garbage Collection Leaks
 * **The Phenomenon:** Attempting to cleanly aggregate batch errors using standard, lazy Python generator expressions (such as a basic `sum()` comprehension) caused the topological sort to drop operational dependencies unpredictably.
 * **The Underlying Science:** Python generator expressions evaluate collections lazily and do not maintain permanent memory references to intermediate yielded objects. As a result, Python's automated garbage collection routine swept transient tracking nodes out of RAM before the topological sort algorithm could capture their memory addresses.
 * **The Student's Fix:** Transitioned the aggregation pipeline to use an explicit list allocation array (`squared_errors = [...]`). This approach securely pinned the volatile memory footprints of all transient variables in RAM until the backward pass was fully completed.
 
-### 🌟 Case Study 4: Upfront Topological Compilation & Structural Dead-End Pruning
+### Case Study 4: Upfront Topological Compilation & Structural Dead-End Pruning
 
 * **The Phenomenon:** As network scaling expanded to deeper multi-layer graphs (`[2, 32, 32, 1]` configurations running for 500 epochs), execution throughput using standard dynamic tape generation degraded significantly due to the constant overhead of Python object allocation and garbage collection passes on millions of transient scalar objects.
 * **The Underlying Science:** In a naive autograd setup, every forward pass reconstructs the computational graph by instantiating new intermediate node objects and lambda closures. This thrashes the Python heap and forces high garbage collection latency. Furthermore, the subsequent backward pass blindly processes every single node in the graph, including leaf parameters, inputs, and constants that have no upstream ancestors—wasting execution cycles computing zero-gradient accumulations.
@@ -97,7 +97,7 @@ By applying a global, seeded pseudo-random shuffle to eliminate polar coordinate
 Processing continuous helical coordinates through a deep scalar configuration requires the dynamic instantiation and topological sorting of thousands of graph nodes per epoch. The engine demonstrated zero optimization drift and clean gradient accumulation across a 500-epoch execution pass, maintaining tight test generalization:
 
 ```text
-🚀 LAUNCHING GEOMETRIC STRESS TEST | Topology: Twin Spirals | Samples: 1000
+LAUNCHING GEOMETRIC STRESS TEST | Topology: Twin Spirals | Samples: 1000
 Graph Compilation Status: Stable | Throughput: ~3.19 iterations/sec
 ================================================================================
 Epoch   0 | Train Loss: 17.8708 | Train Acc: 58.1% | Test Loss: 17.6131 | Test Acc: 46.9%
@@ -186,7 +186,7 @@ The repository preserves my raw handwritten engineering notes alongside dedicate
 * **[Base Computational Graph & Pass-Through Mechanics](./derivatives/README.md):** Breaks down how the **Multivariate Chain Rule** maps onto dynamic topologies, validating why gradient accumulators require summation syntax (`+=`) rather than static assignment to eliminate lateral path leakage. It also showcases the constant unit derivative ($\frac{\partial \text{out}}{\partial \text{self}} = 1.0$) underlying linear addition operators.
 * **[Non-Linear Activation & Power Overloads](./derivatives/README.md):** Details the exact localized derivative profiles for complex mathematical transformations. This includes tracking the power rule across scalar overloads ($n \cdot x^{n-1}$) and proving the asymptotic limits of the hyperbolic tangent function ($\frac{d}{dx}\tanh(x) = 1 - \tanh^2(x)$) which causes the weight saturation and vanishing gradients analyzed in our Case Studies.
 
-👉 **To inspect the raw hand-drawn calculation sheets and their step-by-step code translations, navigate directly to the [Derivations Directory](./derivatives/)**.
+**To inspect the raw hand-drawn calculation sheets and their step-by-step code translations, navigate directly to the [Derivations Directory](./derivatives/)**.
 
 ## 5. Execution Guide
 
